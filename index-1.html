@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Senses Of Saigon — Tái Khám Phá Sài Gòn</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:    #1A1814;
+  --ivory:  #F2EDE4;
+  --sienna: #B85C38;
+  --sage:   #8A9E8C;
+  --gold:   #C9A84C;
+  --muted:  #6B6560;
+  --border: rgba(26,24,20,0.12);
+  --pad-top: env(safe-area-inset-top, 0px);
+  --pad-bot: env(safe-area-inset-bottom, 0px);
+  box-sizing: border-box;
+  padding-top: var(--pad-top);
+  padding-bottom: var(--pad-bot);
+}
+*, *::before, *::after { box-sizing: inherit; margin: 0; padding: 0; }
+
+html { scroll-padding-top: var(--pad-top); }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--ivory);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: var(--pad-top); left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 48px;
+  background: rgba(242,237,228,0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; letter-spacing: -0.01em;
+  color: var(--ink); text-decoration: none;
+}
+.nav-logo span { color: var(--sienna); }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  font-size: 14px; font-weight: 400; color: var(--muted);
+  text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-cta {
+  background: var(--sienna); color: #fff;
+  padding: 10px 24px; border-radius: 2px;
+  font-size: 14px; font-weight: 500; text-decoration: none;
+  transition: background 0.2s;
+}
+.nav-cta:hover { background: #9e4d2e; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  background: var(--ink);
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: end;
+  padding: 0;
+  position: relative; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 70% 50%, rgba(184,92,56,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 20% 80%, rgba(201,168,76,0.10) 0%, transparent 60%);
+}
+.hero-left {
+  position: relative; z-index: 2;
+  padding: 160px 64px 96px;
+}
+.hero-eyebrow {
+  font-size: 12px; font-weight: 500; letter-spacing: 0.18em;
+  color: var(--gold); margin-bottom: 28px;
+  text-transform: none;
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(44px, 5.5vw, 72px);
+  font-weight: 700; line-height: 1.08;
+  color: var(--ivory);
+  margin-bottom: 28px;
+}
+.hero-title em {
+  font-style: italic; color: var(--sienna);
+}
+.hero-sub {
+  font-size: 16px; font-weight: 300; color: rgba(242,237,228,0.65);
+  max-width: 400px; line-height: 1.75; margin-bottom: 48px;
+}
+.hero-actions { display: flex; gap: 16px; align-items: center; }
+.btn-primary {
+  background: var(--sienna); color: #fff;
+  padding: 14px 32px; border-radius: 2px;
+  font-size: 15px; font-weight: 500; text-decoration: none;
+  transition: background 0.2s;
+}
+.btn-primary:hover { background: #9e4d2e; }
+.btn-ghost {
+  color: rgba(242,237,228,0.6); font-size: 14px;
+  text-decoration: none; display: flex; align-items: center; gap: 8px;
+  transition: color 0.2s;
+}
+.btn-ghost:hover { color: var(--ivory); }
+
+.hero-right {
+  position: relative; z-index: 2;
+  padding: 120px 64px 80px 32px;
+  display: flex; flex-direction: column; gap: 0;
+}
+/* Passport stamp cards */
+.stamp-stack {
+  position: relative; width: 320px; height: 380px;
+  margin-left: auto;
+}
+.stamp-card {
+  position: absolute;
+  background: var(--ivory); border-radius: 3px;
+  padding: 28px 28px 24px;
+  width: 260px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.3);
+}
+.stamp-card:nth-child(1) { top: 0; left: 40px; transform: rotate(-4deg); }
+.stamp-card:nth-child(2) { top: 60px; left: 20px; transform: rotate(1.5deg); }
+.stamp-card:nth-child(3) { top: 110px; left: 50px; transform: rotate(-1deg); }
+.stamp-icon { font-size: 28px; margin-bottom: 10px; display: block; }
+.stamp-sense {
+  font-size: 10px; font-weight: 500; letter-spacing: 0.14em;
+  color: var(--muted); margin-bottom: 4px;
+}
+.stamp-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px; font-weight: 600; color: var(--ink);
+}
+.stamp-dot {
+  width: 48px; height: 48px; border-radius: 50%;
+  border: 2px dashed var(--sienna);
+  position: absolute; right: 20px; top: 20px;
+  display: flex; align-items: center; justify-content: center;
+}
+.stamp-dot span {
+  font-size: 9px; text-align: center; line-height: 1.2;
+  color: var(--sienna); font-weight: 500;
+}
+
+/* ── SECTION BASE ── */
+section { padding: 96px 64px; }
+.section-label {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.16em;
+  color: var(--sienna); margin-bottom: 16px;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 3.5vw, 48px);
+  font-weight: 600; line-height: 1.15;
+  color: var(--ink); margin-bottom: 0;
+}
+.section-body {
+  font-size: 16px; color: var(--muted); line-height: 1.8;
+  max-width: 520px;
+}
+
+/* ── CORE PRODUCT — SPLIT ── */
+.core-section {
+  background: var(--ink);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+  align-items: center; padding: 96px 64px;
+}
+.core-section .section-title { color: var(--ivory); }
+.core-section .section-body { color: rgba(242,237,228,0.55); }
+.core-section .section-label { color: var(--gold); }
+.core-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 2.5vw, 30px);
+  font-style: italic; font-weight: 400;
+  color: var(--ivory); line-height: 1.5;
+  border-left: 3px solid var(--sienna);
+  padding-left: 28px; margin-top: 40px;
+}
+
+/* ── 5 SENSES — TANGIBLE ── */
+.senses-section { background: var(--ivory); padding: 96px 64px; }
+.senses-header {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+  align-items: end; margin-bottom: 64px;
+}
+.senses-grid {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px;
+}
+.sense-tile {
+  background: var(--ink);
+  padding: 36px 24px 28px;
+  position: relative; overflow: hidden;
+  cursor: default;
+  transition: background 0.3s;
+}
+.sense-tile:hover { background: #2a2520; }
+.sense-tile:hover .sense-bar { width: 100%; }
+.sense-bar {
+  position: absolute; bottom: 0; left: 0; height: 3px;
+  background: var(--sienna); width: 0;
+  transition: width 0.4s ease;
+}
+.sense-num {
+  font-size: 11px; color: var(--muted); margin-bottom: 20px;
+  font-weight: 400;
+}
+.sense-icon { font-size: 32px; display: block; margin-bottom: 16px; }
+.sense-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 600; color: var(--ivory);
+  margin-bottom: 8px;
+}
+.sense-activity {
+  font-size: 12px; color: rgba(242,237,228,0.45); line-height: 1.6;
+}
+.sense-tag {
+  margin-top: 20px; display: inline-block;
+  font-size: 10px; font-weight: 500; letter-spacing: 0.1em;
+  color: var(--gold); border: 1px solid rgba(201,168,76,0.35);
+  padding: 3px 10px;
+}
+
+/* ── FLEXIBILITY BAND ── */
+.flex-band {
+  background: var(--sienna); padding: 64px;
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px;
+  align-items: start;
+}
+.flex-band h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 600; color: #fff;
+  line-height: 1.2; grid-column: 1/2;
+}
+.flex-item { color: rgba(255,255,255,0.75); font-size: 14px; line-height: 1.75; }
+.flex-item strong { color: #fff; font-weight: 500; display: block; margin-bottom: 6px; font-size: 15px; }
+
+/* ── AUGMENTED — PASSPORT ── */
+.augmented-section {
+  padding: 96px 64px; background: var(--ivory);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+  align-items: center;
+}
+.passport-visual {
+  position: relative; height: 440px;
+}
+.passport-book {
+  width: 280px; height: 380px;
+  background: #2C3E50;
+  border-radius: 4px 12px 12px 4px;
+  position: relative; overflow: hidden;
+  box-shadow: -8px 8px 40px rgba(0,0,0,0.25);
+  padding: 32px 28px;
+}
+.passport-cover-text {
+  font-family: 'Playfair Display', serif;
+  color: rgba(255,255,255,0.9); margin-top: 12px;
+}
+.passport-cover-text .country {
+  font-size: 11px; letter-spacing: 0.2em; font-weight: 400;
+  color: rgba(255,255,255,0.5); margin-bottom: 8px;
+}
+.passport-cover-text .title {
+  font-size: 20px; font-weight: 700; line-height: 1.2;
+}
+.passport-seal {
+  width: 72px; height: 72px; border-radius: 50%;
+  border: 2px solid rgba(201,168,76,0.6);
+  margin-top: 24px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+}
+.stamp-marks {
+  position: absolute; bottom: 28px; left: 28px; right: 28px;
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.stamp-mark {
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1.5px solid rgba(201,168,76,0.5);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.coin-float {
+  position: absolute; right: -20px; top: 60px;
+  width: 88px; height: 88px; border-radius: 50%;
+  background: linear-gradient(135deg, #C9A84C, #8B6914);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  font-size: 24px;
+}
+.story-float {
+  position: absolute; right: -32px; bottom: 40px;
+  width: 180px; background: #fff;
+  border-radius: 3px; padding: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+}
+.story-float .sf-label {
+  font-size: 9px; letter-spacing: 0.12em;
+  color: var(--muted); margin-bottom: 6px;
+}
+.story-float .sf-title {
+  font-size: 12px; font-weight: 500; color: var(--ink); line-height: 1.4;
+}
+.sf-instagram { font-size: 18px; margin-bottom: 6px; }
+
+.augment-list { list-style: none; margin-top: 40px; }
+.augment-list li {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  display: grid; grid-template-columns: 48px 1fr; gap: 16px;
+  align-items: start;
+}
+.augment-list li:last-child { border-bottom: none; }
+.aug-icon {
+  width: 40px; height: 40px;
+  background: rgba(184,92,56,0.08);
+  border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.aug-name { font-weight: 500; color: var(--ink); font-size: 15px; margin-bottom: 3px; }
+.aug-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+/* ── PACKAGES ── */
+.packages-section { background: var(--ink); padding: 96px 64px; }
+.packages-section .section-title { color: var(--ivory); }
+.packages-section .section-label { color: var(--gold); }
+.packages-grid {
+  margin-top: 56px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+}
+.pkg-card {
+  background: #221E1A; padding: 40px 32px;
+  position: relative;
+}
+.pkg-card.featured {
+  background: var(--sienna);
+}
+.pkg-badge {
+  font-size: 10px; letter-spacing: 0.12em; font-weight: 500;
+  color: var(--gold); margin-bottom: 20px;
+  display: block;
+}
+.pkg-card.featured .pkg-badge { color: rgba(255,255,255,0.75); }
+.pkg-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-weight: 600; color: var(--ivory);
+  margin-bottom: 12px;
+}
+.pkg-price {
+  font-size: 32px; font-weight: 300; color: var(--ivory);
+  margin-bottom: 4px; line-height: 1;
+}
+.pkg-price span { font-size: 14px; opacity: 0.6; }
+.pkg-desc { font-size: 13px; color: rgba(242,237,228,0.5); margin: 20px 0 28px; line-height: 1.7; }
+.pkg-card.featured .pkg-desc { color: rgba(255,255,255,0.75); }
+.pkg-features { list-style: none; margin-bottom: 32px; }
+.pkg-features li {
+  font-size: 13px; color: rgba(242,237,228,0.6);
+  padding: 6px 0;
+  display: flex; gap: 10px; align-items: baseline;
+}
+.pkg-card.featured .pkg-features li { color: rgba(255,255,255,0.8); }
+.pkg-features li::before { content: '—'; color: var(--sienna); flex-shrink: 0; }
+.pkg-card.featured .pkg-features li::before { content: '—'; color: rgba(255,255,255,0.5); }
+.pkg-btn {
+  display: block; text-align: center;
+  padding: 13px; border: 1px solid rgba(242,237,228,0.2);
+  color: var(--ivory); text-decoration: none; font-size: 14px; font-weight: 500;
+  transition: background 0.2s, border-color 0.2s;
+}
+.pkg-btn:hover { background: rgba(242,237,228,0.08); }
+.pkg-card.featured .pkg-btn {
+  background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3);
+}
+.pkg-card.featured .pkg-btn:hover { background: rgba(255,255,255,0.25); }
+
+/* ── BOOKING FLOW ── */
+.booking-section {
+  padding: 96px 64px; background: var(--ivory);
+}
+.booking-steps {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  margin-top: 56px; position: relative;
+}
+.booking-steps::before {
+  content: '';
+  position: absolute; top: 28px; left: 80px; right: 80px; height: 1px;
+  background: var(--border);
+}
+.step { text-align: center; padding: 0 16px; }
+.step-num {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--ink); color: var(--ivory);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; font-weight: 600;
+  margin: 0 auto 20px; position: relative; z-index: 1;
+}
+.step-title { font-weight: 500; font-size: 15px; color: var(--ink); margin-bottom: 6px; }
+.step-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+/* ── TESTIMONIAL ── */
+.testi-section {
+  background: var(--sage); padding: 96px 64px;
+  display: grid; grid-template-columns: 1fr 2fr; gap: 80px;
+  align-items: center;
+}
+.testi-section .section-title { color: #fff; }
+.testi-section .section-label { color: rgba(255,255,255,0.6); }
+.testi-cards { display: flex; flex-direction: column; gap: 24px; }
+.testi-card {
+  background: rgba(255,255,255,0.15);
+  padding: 28px 32px; border-radius: 2px;
+  backdrop-filter: blur(4px);
+}
+.testi-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-style: italic; color: #fff;
+  line-height: 1.65; margin-bottom: 16px;
+}
+.testi-author { font-size: 13px; color: rgba(255,255,255,0.65); font-weight: 400; }
+
+/* ── CONTACT / FOOTER ── */
+.contact-section {
+  background: var(--ink); padding: 96px 64px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+}
+.contact-section .section-title { color: var(--ivory); }
+.contact-section .section-label { color: var(--gold); }
+.contact-section .section-body { color: rgba(242,237,228,0.5); margin-top: 16px; }
+
+.contact-form { display: flex; flex-direction: column; gap: 16px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+input, select, textarea {
+  background: rgba(242,237,228,0.06);
+  border: 1px solid rgba(242,237,228,0.15);
+  color: var(--ivory); font-family: 'DM Sans', sans-serif;
+  font-size: 14px; padding: 13px 16px; outline: none;
+  transition: border-color 0.2s; border-radius: 0;
+  width: 100%;
+}
+input::placeholder, textarea::placeholder { color: rgba(242,237,228,0.3); }
+input:focus, select:focus, textarea:focus { border-color: rgba(242,237,228,0.4); }
+select { color: rgba(242,237,228,0.7); }
+select option { background: var(--ink); color: var(--ivory); }
+textarea { resize: vertical; min-height: 100px; }
+.form-submit {
+  background: var(--sienna); color: #fff;
+  border: none; padding: 14px 32px;
+  font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+  cursor: pointer; width: 100%; transition: background 0.2s;
+}
+.form-submit:hover { background: #9e4d2e; }
+
+footer {
+  background: #0F0D0A; padding: 40px 64px;
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid rgba(242,237,228,0.06);
+}
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 700; color: var(--ivory);
+}
+.footer-logo span { color: var(--sienna); }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; }
+.footer-links a:hover { color: var(--ivory); }
+.footer-copy { font-size: 12px; color: rgba(242,237,228,0.25); }
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  nav { padding: 16px 20px; }
+  .nav-links { display: none; }
+  section, .core-section, .flex-band, .augmented-section,
+  .packages-section, .booking-section, .testi-section,
+  .contact-section { padding: 64px 20px; }
+  .hero { grid-template-columns: 1fr; min-height: auto; padding-bottom: 0; }
+  .hero-left { padding: 120px 20px 48px; }
+  .hero-right { display: none; }
+  .senses-header { grid-template-columns: 1fr; }
+  .senses-grid { grid-template-columns: 1fr 1fr; gap: 2px; }
+  .core-section { grid-template-columns: 1fr; gap: 40px; }
+  .flex-band { grid-template-columns: 1fr; gap: 24px; }
+  .flex-band h2 { grid-column: 1; }
+  .augmented-section { grid-template-columns: 1fr; }
+  .passport-visual { display: none; }
+  .packages-grid { grid-template-columns: 1fr; gap: 2px; }
+  .booking-steps { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .booking-steps::before { display: none; }
+  .testi-section { grid-template-columns: 1fr; gap: 40px; }
+  .contact-section { grid-template-columns: 1fr; gap: 40px; }
+  .form-row { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 20px; text-align: center; padding: 32px 20px; }
+  .footer-links { flex-wrap: wrap; justify-content: center; }
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ivory: #F2EDE4;
+    --ink: #1A1814;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#"><span>S</span>enses Of Saigon</a>
+  <ul class="nav-links">
+    <li><a href="#san-pham">Trải nghiệm</a></li>
+    <li><a href="#goi-tour">Gói tour</a></li>
+    <li><a href="#passport">Passport</a></li>
+    <li><a href="#lien-he">Liên hệ</a></li>
+  </ul>
+  <a class="nav-cta" href="#lien-he">Đặt tour ngay</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-left">
+    <p class="hero-eyebrow">Khoa Du lịch · ĐH KHXH&NV, ĐHQG-HCM</p>
+    <h1 class="hero-title">Sài Gòn —<br>cảm nhận bằng<br><em>cả 5 giác quan</em></h1>
+    <p class="hero-sub">Bạn đã đến Sài Gòn. Nhưng bạn đã thực sự <em>cảm nhận</em> thành phố này chưa? Một hành trình tái khám phá hoàn toàn khác.</p>
+    <div class="hero-actions">
+      <a href="#san-pham" class="btn-primary">Khám phá hành trình</a>
+      <a href="#goi-tour" class="btn-ghost">Xem các gói tour ↓</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stamp-stack">
+      <div class="stamp-card">
+        <span class="stamp-icon">👁</span>
+        <p class="stamp-sense">Thị giác</p>
+        <p class="stamp-name">Water Bus · Sông Sài Gòn</p>
+        <div class="stamp-dot"><span>✓<br>Trạm 1</span></div>
+      </div>
+      <div class="stamp-card">
+        <span class="stamp-icon">👃</span>
+        <p class="stamp-sense">Khứu giác</p>
+        <p class="stamp-name">Blind Smell · Khu Ẩm Thực</p>
+        <div class="stamp-dot"><span>✓<br>Trạm 2</span></div>
+      </div>
+      <div class="stamp-card">
+        <span class="stamp-icon">🤚</span>
+        <p class="stamp-sense">Xúc giác</p>
+        <p class="stamp-name">Go Kart · Thi Đấu Nhóm</p>
+        <div class="stamp-dot"><span>✓<br>Trạm 5</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CORE PRODUCT -->
+<section class="core-section" id="san-pham">
+  <div>
+    <p class="section-label">Core product</p>
+    <h2 class="section-title">Tái khám phá<br>một thành phố<br>bạn tưởng đã biết</h2>
+  </div>
+  <div>
+    <p class="section-body">Sài Gòn không thiếu người đến. Nhưng hầu hết chỉ <em>nhìn</em> thành phố qua ô cửa kính. Senses Of Saigon được thiết kế để bạn sống trọn vẹn trong không gian đó — ngửi mùi ẩm thực hẻm nhỏ, nghe tiếng nhạc rối nước, chạm vào nhịp thở của một đô thị đang thay đổi từng ngày.</p>
+    <blockquote class="core-quote">"Không phải một tour tham quan.<br>Đây là một trải nghiệm cảm giác."</blockquote>
+  </div>
+</section>
+
+<!-- 5 SENSES TANGIBLE -->
+<section class="senses-section" id="trai-nghiem">
+  <div class="senses-header">
+    <div>
+      <p class="section-label">Tangible product</p>
+      <h2 class="section-title">5 trạm —<br>5 giác quan</h2>
+    </div>
+    <p class="section-body" style="align-self:end; margin-bottom:8px;">Mỗi trạm được thiết kế như một chương trong cuốn nhật ký Sài Gòn của riêng bạn. Thứ tự và nội dung linh hoạt theo nhóm khách.</p>
+  </div>
+  <div class="senses-grid">
+    <div class="sense-tile">
+      <p class="sense-num">01</p>
+      <span class="sense-icon">👁</span>
+      <p class="sense-name">Thị giác</p>
+      <p class="sense-activity">Water Bus trên sông Sài Gòn — skyline nhìn từ mặt nước, ánh sáng buổi sáng sớm hoặc hoàng hôn</p>
+      <span class="sense-tag">Bến Bạch Đằng</span>
+      <div class="sense-bar"></div>
+    </div>
+    <div class="sense-tile">
+      <p class="sense-num">02</p>
+      <span class="sense-icon">👃</span>
+      <p class="sense-name">Khứu giác</p>
+      <p class="sense-activity">Blind Smell Test tại khu ẩm thực — đoán nguyên liệu bằng mắt nhắm, câu chuyện gia vị Nam Bộ</p>
+      <span class="sense-tag">Chợ Bến Thành · Q.4</span>
+      <div class="sense-bar"></div>
+    </div>
+    <div class="sense-tile">
+      <p class="sense-num">03</p>
+      <span class="sense-icon">👅</span>
+      <p class="sense-name">Vị giác</p>
+      <p class="sense-activity">Bữa trưa tại nhà hàng Michelin Bib Gourmand — set menu đặc trưng Nam Bộ, câu chuyện từ đầu bếp</p>
+      <span class="sense-tag">Michelin Guide VN</span>
+      <div class="sense-bar"></div>
+    </div>
+    <div class="sense-tile">
+      <p class="sense-num">04</p>
+      <span class="sense-icon">👂</span>
+      <p class="sense-name">Thính giác</p>
+      <p class="sense-activity">Múa rối nước Rồng Vàng — backstage gặp nghệ sĩ, nghe tiếng trống đàn bầu hòa vào không gian cổ</p>
+      <span class="sense-tag">Nhà hát Q.1</span>
+      <div class="sense-bar"></div>
+    </div>
+    <div class="sense-tile">
+      <p class="sense-num">05</p>
+      <span class="sense-icon">🤚</span>
+      <p class="sense-name">Xúc giác</p>
+      <p class="sense-activity">Go Kart thi đấu theo nhóm — bảng xếp hạng, adrenaline kết thúc hành trình bằng đỉnh cảm xúc</p>
+      <span class="sense-tag">Track nội thành</span>
+      <div class="sense-bar"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FLEXIBILITY BAND -->
+<div class="flex-band">
+  <h2>Linh hoạt theo từng nhóm khách</h2>
+  <div class="flex-item">
+    <strong>Gia đình có con nhỏ</strong>
+    Thay Go Kart bằng xiếc hoặc workshop vẽ tranh. Múa rối nước phiên bản kể chuyện cho trẻ em. Nhà hàng có ghế cao và menu kids. Lộ trình ngắn hơn, tempo chậm hơn.
+  </div>
+  <div class="flex-item">
+    <strong>Gen Z & nhóm bạn bè</strong>
+    Blind Smell Test có thử thách quay TikTok. Bảng xếp hạng Go Kart tính điểm team. Backstage múa rối có "check-in moment" riêng. Video recap 60 giây gửi trong 24h.
+  </div>
+</div>
+
+<!-- AUGMENTED PRODUCT -->
+<section class="augmented-section" id="passport">
+  <div class="passport-visual">
+    <div class="passport-book">
+      <div class="passport-cover-text">
+        <p class="country">SENSES OF SAIGON</p>
+        <p class="title">Sensory<br>Passport</p>
+      </div>
+      <div class="passport-seal">🌺</div>
+      <div class="stamp-marks">
+        <div class="stamp-mark">👁</div>
+        <div class="stamp-mark">👃</div>
+        <div class="stamp-mark">👅</div>
+        <div class="stamp-mark">👂</div>
+        <div class="stamp-mark">🤚</div>
+      </div>
+    </div>
+    <div class="coin-float">🪙</div>
+    <div class="story-float">
+      <p class="sf-instagram">📱</p>
+      <p class="sf-label">Instagram Story Template</p>
+      <p class="sf-title">"Hôm nay tôi đã cảm nhận Sài Gòn theo cách chưa từng có..."</p>
+    </div>
+  </div>
+
+  <div>
+    <p class="section-label">Augmented product</p>
+    <h2 class="section-title">Những thứ bạn mang về sau tour</h2>
+    <ul class="augment-list">
+      <li>
+        <div class="aug-icon">📓</div>
+        <div>
+          <p class="aug-name">Sensory Passport — bìa da</p>
+          <p class="aug-desc">Quyển hộ chiếu thiết kế riêng. Mỗi trạm đóng 1 dấu stamp thủ công. Kỷ vật vật lý không thể mua ở bất kỳ đâu khác.</p>
+        </div>
+      </li>
+      <li>
+        <div class="aug-icon">🪙</div>
+        <div>
+          <p class="aug-name">Đồng xu khắc địa điểm</p>
+          <p class="aug-desc">5 đồng xu đồng nhỏ, mỗi xu khắc tên và icon của 1 trạm trải nghiệm. Collectible, gifting-worthy.</p>
+        </div>
+      </li>
+      <li>
+        <div class="aug-icon">📱</div>
+        <div>
+          <p class="aug-name">Story template Instagram</p>
+          <p class="aug-desc">Bộ template thiết kế sẵn để chia sẻ ngay sau tour — khách chỉ việc thêm ảnh, đăng lên story. Tạo UGC tự nhiên cho thương hiệu.</p>
+        </div>
+      </li>
+      <li>
+        <div class="aug-icon">🎬</div>
+        <div>
+          <p class="aug-name">Video recap cá nhân hóa</p>
+          <p class="aug-desc">Clip 60 giây từ footage quay trong ngày, dựng riêng cho nhóm của bạn. Gửi qua Zalo trong 24h sau tour.</p>
+        </div>
+      </li>
+      <li>
+        <div class="aug-icon">📜</div>
+        <div>
+          <p class="aug-name">Certificate 5 Senses Explorer</p>
+          <p class="aug-desc">PDF thiết kế đẹp xác nhận bạn đã hoàn thành hành trình 5 giác quan. Share-worthy trên LinkedIn và Facebook.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section class="packages-section" id="goi-tour">
+  <p class="section-label">Gói dịch vụ</p>
+  <h2 class="section-title" style="color:var(--ivory)">Chọn hành trình<br>phù hợp với bạn</h2>
+  <div class="packages-grid">
+    <div class="pkg-card">
+      <span class="pkg-badge">Classic</span>
+      <p class="pkg-name">Saigon Senses Classic</p>
+      <p class="pkg-price">3.500.000<span> VNĐ/người</span></p>
+      <p class="pkg-desc">Hành trình full-day 8–10 tiếng khám phá đầy đủ 5 giác quan Sài Gòn.</p>
+      <ul class="pkg-features">
+        <li>5 trạm trải nghiệm đầy đủ</li>
+        <li>HDV song ngữ Việt–Anh</li>
+        <li>Xe đưa đón 16 chỗ</li>
+        <li>Bữa trưa Michelin Bib Gourmand</li>
+        <li>Sensory Passport + đồng xu</li>
+        <li>Video recap 24h</li>
+      </ul>
+      <a href="#lien-he" class="pkg-btn">Đặt gói này</a>
+    </div>
+    <div class="pkg-card featured">
+      <span class="pkg-badge">Phổ biến nhất</span>
+      <p class="pkg-name">Saigon Senses Private</p>
+      <p class="pkg-price">5.500.000<span> VNĐ/người</span></p>
+      <p class="pkg-desc">Trải nghiệm hoàn toàn riêng tư cho 2–4 người, tùy chỉnh mọi chi tiết.</p>
+      <ul class="pkg-features">
+        <li>Xe riêng cao cấp cả ngày</li>
+        <li>Menu cá nhân hóa theo sở thích</li>
+        <li>Nhiếp ảnh gia riêng</li>
+        <li>Ghế VIP múa rối + backstage 30 phút</li>
+        <li>Go Kart đặt riêng khung giờ</li>
+        <li>Toàn bộ augmented products</li>
+      </ul>
+      <a href="#lien-he" class="pkg-btn">Đặt gói này</a>
+    </div>
+    <div class="pkg-card">
+      <span class="pkg-badge">Corporate & MICE</span>
+      <p class="pkg-name">Saigon Senses Corporate</p>
+      <p class="pkg-price">Liên hệ<span> báo giá</span></p>
+      <p class="pkg-desc">Team building cao cấp cho nhóm từ 15 người trở lên. Hóa đơn VAT đầy đủ.</p>
+      <ul class="pkg-features">
+        <li>MC riêng dẫn chương trình</li>
+        <li>Bảng điểm Go Kart điện tử</li>
+        <li>Đặt bàn riêng nhà hàng</li>
+        <li>Workshop khứu giác mở rộng</li>
+        <li>Xuất hóa đơn VAT</li>
+        <li>Tùy chỉnh theo yêu cầu doanh nghiệp</li>
+      </ul>
+      <a href="#lien-he" class="pkg-btn">Liên hệ ngay</a>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING FLOW -->
+<section class="booking-section">
+  <p class="section-label">Quy trình đặt tour</p>
+  <h2 class="section-title">Đơn giản — 4 bước</h2>
+  <div class="booking-steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <p class="step-title">Chọn gói & ngày</p>
+      <p class="step-desc">Chọn gói tour, ngày khởi hành và số người tham gia qua form bên dưới hoặc Zalo.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <p class="step-title">Tư vấn cá nhân hóa</p>
+      <p class="step-desc">HDV liên hệ trong 30 phút để tùy chỉnh lộ trình theo nhóm của bạn.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <p class="step-title">Đặt cọc 30%</p>
+      <p class="step-desc">Thanh toán qua MoMo, VNPay hoặc chuyển khoản. Hoàn 100% nếu hủy trước 72h.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <p class="step-title">Trải nghiệm & lưu giữ</p>
+      <p class="step-desc">Đến điểm hẹn, nhận Sensory Passport và bắt đầu hành trình. Video recap gửi trong 24h.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-section">
+  <div>
+    <p class="section-label">Khách hàng nói gì</p>
+    <h2 class="section-title">Những cảm nhận thật</h2>
+  </div>
+  <div class="testi-cards">
+    <div class="testi-card">
+      <p class="testi-text">"Tôi sinh ra ở Sài Gòn, sống ở đây 24 năm. Nhưng lần đầu tiên ngồi trên water bus nhìn về phía thành phố, tôi mới thấy mình chưa từng thực sự <em>nhìn</em> nơi mình lớn lên."</p>
+      <p class="testi-author">Minh Thư, 24 tuổi · Sinh viên ĐH RMIT</p>
+    </div>
+    <div class="testi-card">
+      <p class="testi-text">"Blind Smell Test là màn highlight nhất. Cả nhóm cười nghiêng ngả khi đoán mùi mắm tôm bằng mắt nhắm. Cái sensory passport đang treo trên tường phòng tôi."</p>
+      <p class="testi-author">Gia Huy, 27 tuổi · Marketing Manager</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="lien-he">
+  <div>
+    <p class="section-label">Liên hệ & đặt tour</p>
+    <h2 class="section-title">Bắt đầu<br>hành trình của bạn</h2>
+    <p class="section-body">Điền form bên cạnh hoặc nhắn Zalo <strong style="color:var(--gold)">0900 000 000</strong>. HDV sẽ phản hồi trong vòng 30 phút trong giờ hành chính.</p>
+    <p class="section-body" style="margin-top:24px;">📍 Điểm xuất phát: Bến Bạch Đằng, Q.1 &amp; Ga Metro Bến Thành<br>🕖 Giờ hoạt động: 6:30 – 18:00 hàng ngày<br>📧 hello@sensesofSaigon.vn</p>
+  </div>
+  <form class="contact-form" onsubmit="handleSubmit(event)">
+    <div class="form-row">
+      <input type="text" placeholder="Họ và tên" required>
+      <input type="tel" placeholder="Số điện thoại" required>
+    </div>
+    <input type="email" placeholder="Email">
+    <div class="form-row">
+      <select>
+        <option value="" disabled selected>Chọn gói tour</option>
+        <option>Classic — 3.500.000đ</option>
+        <option>Private — 5.500.000đ</option>
+        <option>Corporate — Báo giá</option>
+      </select>
+      <input type="date" min="2025-01-01">
+    </div>
+    <input type="number" placeholder="Số người tham gia" min="1">
+    <textarea placeholder="Yêu cầu đặc biệt (dị ứng thức ăn, nhóm có trẻ em, ...)"></textarea>
+    <button type="submit" class="form-submit">Gửi yêu cầu đặt tour</button>
+    <p id="form-msg" style="font-size:13px;color:var(--sage);display:none;text-align:center;margin-top:4px;">✓ Đã nhận! HDV sẽ liên hệ bạn trong 30 phút.</p>
+  </form>
+</section>
+
+<footer>
+  <span class="footer-logo"><span>S</span>enses Of Saigon</span>
+  <div class="footer-links">
+    <a href="#san-pham">Trải nghiệm</a>
+    <a href="#goi-tour">Gói tour</a>
+    <a href="#passport">Passport</a>
+    <a href="#lien-he">Liên hệ</a>
+  </div>
+  <span class="footer-copy">© 2025 Senses Of Saigon · Khoa Du lịch, ĐH KHXH&NV</span>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const msg = document.getElementById('form-msg');
+  msg.style.display = 'block';
+  e.target.reset();
+  setTimeout(() => { msg.style.display = 'none'; }, 5000);
+}
+</script>
+</body>
+</html>
